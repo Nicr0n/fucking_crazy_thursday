@@ -6,8 +6,8 @@
 ```
 git clone https://github.com/Nicr0n/fucking_crazy_thursday.git
 ```
-1. 在`HoshinoBot/hoshino/config/__bot__.py`文件的`MODULES_ON`里添加`fucking_crazy_thursday`
-1. 重启hoshino
+2. 在`HoshinoBot/hoshino/config/__bot__.py`文件的`MODULES_ON`里添加`fucking_crazy_thursday`
+3. 重启hoshino
 
 ## 指令
 |  指令   | 说明  |
@@ -16,4 +16,4 @@ git clone https://github.com/Nicr0n/fucking_crazy_thursday.git
 
 ## 后续计划
 
-1. 制作网页版疯狂星期四，通过API接口获取文案❎
+1. 制作网页版疯狂星期四，通过API接口添加文案❎
