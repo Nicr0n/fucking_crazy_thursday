@@ -13,13 +13,22 @@ sv = Service('疯狂星期四')
 async def random_post(bot, ev: CQEvent):
     # json数据存放路径
     filePath = os.path.join(os.path.dirname(__file__), 'post.json')
-    # 获取json数据
-    r = requests.get('https://gitee.com/Nicr0n/fucking_crazy_thursday/raw/master/post.json')
     # 将json对象加载到数组
-    kfc = r.json().get('post')
+    kfc = json.load(open(filePath, 'r', encoding="UTF-8")).get('post')
     # 随机选取数组中的一个对象
     randomPost = random.choice(kfc)
     await bot.send(ev,randomPost)
+    
+# gitee屏蔽部分敏感词 暂时停用线上json raw对象
+#     # json数据存放路径
+#     filePath = os.path.join(os.path.dirname(__file__), 'post.json')
+#     # 获取json数据
+#     r = requests.get('https://gitee.com/Nicr0n/fucking_crazy_thursday/raw/master/post.json')
+#     # 将json对象加载到数组
+#     kfc = r.json().get('post')
+#     # 随机选取数组中的一个对象
+#     randomPost = random.choice(kfc)
+#     await bot.send(ev,randomPost)
 
 # 保留更新本地文件方案
 # @sv.on_fullmatch('更新文案')
