@@ -5,6 +5,10 @@ import requests
 
 from hoshino import Service
 from hoshino.typing import MessageSegment, CQEvent
+from hoshino.util import DailyNumberLimiter, FreqLimiter
+
+time_limit = DailyNumberLimiter(3)
+freq_limit = FreqLimiter(30)
 
 sv = Service('疯狂星期四')
 
@@ -17,7 +21,15 @@ async def random_post(bot, ev: CQEvent):
     kfc = json.load(open(filePath, 'r', encoding="UTF-8")).get('post')
     # 随机选取数组中的一个对象
     randomPost = random.choice(kfc)
-    await bot.send(ev,randomPost)
+
+    # 限流
+    if (time_limit.check(ev.user_id):
+        if (freq_limit.check(ev.user_id):
+            await bot.send(ev,randomPost)
+            time_limit.increase(ev.user_id, 1)
+            freq_limit.start_cd(ev.user_id)
+        else:
+            await bot.send(ev, "吮指原味鸡刚刚下锅，请过一会再来！")
     
 # gitee屏蔽部分敏感词 暂时停用线上json raw对象
 #     # json数据存放路径
