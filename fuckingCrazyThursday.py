@@ -23,8 +23,8 @@ async def random_post(bot, ev: CQEvent):
     randomPost = random.choice(kfc)
 
     # 限流
-    if (time_limit.check(ev.user_id):
-        if (freq_limit.check(ev.user_id):
+    if (time_limit.check(ev.user_id)):
+        if (freq_limit.check(ev.user_id)):
             await bot.send(ev,randomPost)
             time_limit.increase(ev.user_id, 1)
             freq_limit.start_cd(ev.user_id)
